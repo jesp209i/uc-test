@@ -1,7 +1,17 @@
 {
   "Deploy": {
     "Project": {
-      "Workspaces": []
+      "Name": "setup backoffice stuff",
+      "Alias": "setup-backoffice-stuff",
+      "Id": "61a2f82c-a37d-4d3d-8ec2-1044b7211663",
+      "Workspaces": [
+        {
+          "Id": "e1219993-a8d6-4803-bc86-681f0996a3b2",
+          "Name": "Live",
+          "Type": "live",
+          "Url": "https://setup-backoffice-stuff.euwest01.rainbowsrock.net"
+        }
+      ]
     },
     "Settings": {}
   },
