@@ -8,7 +8,7 @@ using Umbraco.Cms.Web.BackOffice.Trees;
 using Umbraco.Cms.Web.Common.Attributes;
 
 namespace BackofficePlay.Code;
-[Tree(Constants.Sections.Settings, "cloudPublicAccess", TreeTitle = "Cloud Public Access", TreeGroup = "cloudPublicAccessGroup")]
+[Tree(Constants.Sections.Settings, Constants.Trees.CloudPublicAccess, TreeTitle = "Cloud Public Access", TreeGroup = "cloudPublicAccessGroup")]
 [PluginController("PublicAccess")]
 public class PublicAccessTreeController : TreeController
 {
@@ -26,17 +26,33 @@ public class PublicAccessTreeController : TreeController
 
     protected override ActionResult<TreeNodeCollection> GetTreeNodes(string id, FormCollection queryStrings)
     {
-        var nodes = new TreeNodeCollection();
-
-        var node = CreateTreeNode("1", "-1", queryStrings, "hest", "icon-presentation", false);
+        return new TreeNodeCollection();
         
-        nodes.Add(node);
-
-        return nodes;
     }
 
     protected override ActionResult<MenuItemCollection> GetMenuForNode(string id, FormCollection queryStrings)
     {
         return _menuItemCollectionFactory.Create();
+    }
+    protected override ActionResult<TreeNode?> CreateRootNode(FormCollection queryStrings)
+    {
+        ActionResult<TreeNode?> rootResult = base.CreateRootNode(queryStrings);
+        if (!(rootResult.Result is null))
+        {
+            return rootResult;
+        }
+
+        TreeNode? root = rootResult.Value;
+
+        if (root is not null)
+        {
+            // This will load in a custom UI instead of the dashboard for the root node
+            root.RoutePath = $"{Constants.Sections.Settings}/{Constants.Trees.CloudPublicAccess}/overview";
+            root.Icon = "lock";
+            root.HasChildren = false;
+            root.MenuUrl = null;
+        }
+
+        return root;
     }
 }

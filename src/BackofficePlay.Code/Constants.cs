@@ -6,4 +6,9 @@ public static class Constants
     {
         public const string Settings = "settings";
     }
+
+    public static class Trees
+    {
+        public const string CloudPublicAccess = "cloudPublicAccess";
+    }
 }
