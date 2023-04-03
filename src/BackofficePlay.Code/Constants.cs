@@ -1,6 +1,9 @@
 namespace BackofficePlay.Code;
 
-public class Constants
+public static class Constants
 {
-    
+    public static class Sections
+    {
+        public const string Settings = "settings";
+    }
 }

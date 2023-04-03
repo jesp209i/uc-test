@@ -1,1 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+<language>
+    <area alias="treeHeaders">
+        <key alias="cloudPublicAccessGroup">Cloud Public Access</key>
+    </area>
+</language>
