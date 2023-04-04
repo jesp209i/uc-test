@@ -2,9 +2,10 @@
 function CloudSecretsController($q, $http, umbRequestHelper, localizationService) {
     let vm = this;
     
-    let baseApiUrl = "backoffice/UmbracoCloudSecrets/CloudSecrets/";
+    let baseApiUrl = "backoffice/api/CloudPublicAccess/";
     
     vm.page = {};
+    vm.data = {};
     function init() {
         vm.loading = true;
         
@@ -20,14 +21,9 @@ function CloudSecretsController($q, $http, umbRequestHelper, localizationService
         });
         
         umbRequestHelper.resourcePromise(
-            $http.get(baseApiUrl + "SecretKeys")
+            $http.get(baseApiUrl + "Get")
         ).then(function (data) {
             vm.data = data;
-        });
-        umbRequestHelper.resourcePromise(
-            $http.get(baseApiUrl + "KeyVaultName")
-        ).then(function (keyVaultName) {
-            vm.keyVaultName = keyVaultName;
         });
     }
 
