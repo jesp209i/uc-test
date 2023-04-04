@@ -48,7 +48,7 @@ public class PublicAccessTreeController : TreeController
         {
             // This will load in a custom UI instead of the dashboard for the root node
             root.RoutePath = $"{Constants.Sections.Settings}/{Constants.Trees.CloudPublicAccess}/overview";
-            root.Icon = "icon-lock";
+            root.Icon = "icon-unlocked";
             root.HasChildren = false;
             root.MenuUrl = null;
         }
