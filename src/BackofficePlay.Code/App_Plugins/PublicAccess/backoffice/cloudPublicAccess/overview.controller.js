@@ -5,22 +5,18 @@ function CloudPublicAccessController($q, $http, umbRequestHelper, localizationSe
     vm.data = {};
     function init() {
         vm.loading = true;
-        console.log($scope);
-        console.log(this);
 
-        var promises = [];
-
-        promises.push(localizationService.localize("treeHeaders_cloudPublicAccess", 'Cloud Public Access title').then(function (value) {
+        var getTitle = localizationService.localize("treeHeaders_cloudPublicAccess", 'Cloud Public Access title').then(function (value) {
             console.log(value);
             vm.pageTitle = value;
             $scope.$emit("$changeTitle", value);
         }, function(error){
             console.log(error);
-        }));
+        });
         
 
         // Load all languages
-        promises.push(umbRequestHelper.resourcePromise(
+        var getSettings = umbRequestHelper.resourcePromise(
             $http.get(baseApiUrl + "GetSettings")
         ).then(function (data) {
             console.log(data);
@@ -28,9 +24,9 @@ function CloudPublicAccessController($q, $http, umbRequestHelper, localizationSe
             vm.loading = false;
         }, function(error){
             console.log(error);
-        }));
+        });
 
-        $q.all(promises).then(function () {
+        $q.all([getTitle, getSettings]).then(function () {
             vm.loading = false;
         });
     }
