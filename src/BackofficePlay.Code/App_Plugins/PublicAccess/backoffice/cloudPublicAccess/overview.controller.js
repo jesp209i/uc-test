@@ -1,8 +1,10 @@
 // Umbraco.Cloud.PublicAcccessController
 function CloudSecretsController($http, umbRequestHelper) {
     let vm = this;
+    
     let baseApiUrl = "backoffice/UmbracoCloudSecrets/CloudSecrets/";
-
+    
+    vm.page.name = "Hello hest";
     function init() {
         umbRequestHelper.resourcePromise(
             $http.get(baseApiUrl + "SecretKeys")
