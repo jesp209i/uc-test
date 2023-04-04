@@ -1,19 +1,26 @@
 function CloudPublicAccessController($q, $http, umbRequestHelper, localizationService, $scope) {    
-    let vm = this;
-    let baseApiUrl = "backoffice/api/CloudPublicAccess/";
-    vm.loading = true;
+    var vm = this;
+    var baseApiUrl = "backoffice/api/CloudPublicAccess/";
     vm.pageTitle = "";
     vm.data = {};
     function init() {
-        localizationService.localize("treeHeaders_cloudPublicAccess", 'Cloud Public Access backup').then(function (value) {
+        vm.loading = true;
+        console.log($scope);
+        console.log(this);
+
+        var promises = [];
+
+        promises.push(localizationService.localize("treeHeaders_cloudPublicAccess", 'Cloud Public Access title').then(function (value) {
             console.log(value);
             vm.pageTitle = value;
             $scope.$emit("$changeTitle", value);
         }, function(error){
             console.log(error);
-        });
+        }));
         
-        umbRequestHelper.resourcePromise(
+
+        // Load all languages
+        promises.push(umbRequestHelper.resourcePromise(
             $http.get(baseApiUrl + "GetSettings")
         ).then(function (data) {
             console.log(data);
@@ -21,6 +28,10 @@ function CloudPublicAccessController($q, $http, umbRequestHelper, localizationSe
             vm.loading = false;
         }, function(error){
             console.log(error);
+        }));
+
+        $q.all(promises).then(function () {
+            vm.loading = false;
         });
     }
 

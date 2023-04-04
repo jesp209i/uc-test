@@ -1,5 +1,5 @@
 <div class="clearfix" ng-controller="Umbraco.Cloud.PublicAccessController">
-    <umb-editor-view footer="false">
+    <umb-editor-view footer="false" ng-if="!vm.loading">
         <umb-editor-header name="vm.pageTitle"
                            name-locked="true"
                            hide-icon="true"
@@ -7,7 +7,7 @@
                            hide-alias="true">
             
         </umb-editor-header>
-        <umb-editor-container ng-if="!vm.loading">
+        <umb-editor-container>
             <umb-box-content>
             <pre>{{vm.data}}</pre>
             </umb-box-content>
