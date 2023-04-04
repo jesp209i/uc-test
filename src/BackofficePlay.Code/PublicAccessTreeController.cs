@@ -8,7 +8,7 @@ using Umbraco.Cms.Web.BackOffice.Trees;
 using Umbraco.Cms.Web.Common.Attributes;
 
 namespace BackofficePlay.Code;
-[Tree(Constants.Sections.Settings, Constants.Trees.CloudPublicAccess, TreeTitle = "Cloud Public Access", TreeGroup = "cloudPublicAccess")]
+[Tree(Constants.Sections.Settings, Constants.Trees.CloudPublicAccess, TreeTitle = "Cloud Public Access", TreeGroup = "cloudPublicAccess", SortOrder = 99)]
 [PluginController("PublicAccess")]
 public class PublicAccessTreeController : TreeController
 {
@@ -48,7 +48,7 @@ public class PublicAccessTreeController : TreeController
         {
             // This will load in a custom UI instead of the dashboard for the root node
             root.RoutePath = $"{Constants.Sections.Settings}/{Constants.Trees.CloudPublicAccess}/overview";
-            root.Icon = "lock";
+            root.Icon = "icon-lock";
             root.HasChildren = false;
             root.MenuUrl = null;
         }

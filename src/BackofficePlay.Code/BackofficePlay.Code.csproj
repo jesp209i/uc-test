@@ -8,8 +8,6 @@
 
   <ItemGroup>
     <Content Include="App_Plugins\**\*.*">
-      <PackagePath>App_Plugins</PackagePath>
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>Always</CopyToPublishDirectory>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
