@@ -6,6 +6,6 @@ public class StuffComposer : IComposer
 {
     public void Compose(IUmbracoBuilder builder)
     {
-        throw new NotImplementedException();
+        builder.AddComponent<StuffComponent>();
     }
 }
