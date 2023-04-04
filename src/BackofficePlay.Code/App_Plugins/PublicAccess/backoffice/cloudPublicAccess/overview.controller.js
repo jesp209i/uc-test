@@ -5,7 +5,7 @@ function CloudPublicAccessController($q, $http, umbRequestHelper, localizationSe
     vm.pageTitle = "";
     vm.data = {};
     function init() {
-        localizationService.localize("treeHeaders_cloudPublicAccess", 'Cloud Public Access').then(function (value) {
+        localizationService.localize("treeHeaders_cloudPublicAccess", 'Cloud Public Access backup').then(function (value) {
             console.log(value);
             vm.pageTitle = value;
             $scope.$emit("$changeTitle", value);

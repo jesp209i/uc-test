@@ -7,7 +7,7 @@
                            hide-alias="true">
             
         </umb-editor-header>
-        <umb-editor-container>
+        <umb-editor-container ng-if="!vm.loading">
             <umb-box-content>
             <pre>{{vm.data}}</pre>
             </umb-box-content>
