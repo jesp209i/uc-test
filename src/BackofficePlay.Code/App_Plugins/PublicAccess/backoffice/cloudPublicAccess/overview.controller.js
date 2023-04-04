@@ -1,7 +1,5 @@
-// Umbraco.Cloud.PublicAcccessController
-function CloudSecretsController($q, $http, umbRequestHelper, localizationService) {
-    let vm = this;
-    
+function CloudPublicAccessController($q, $http, umbRequestHelper, localizationService) {    
+    vm = this;
     let baseApiUrl = "backoffice/api/CloudPublicAccess/";
     
     vm.pageTitle = 'Cloud Public Access';
@@ -22,4 +20,4 @@ function CloudSecretsController($q, $http, umbRequestHelper, localizationService
     init();
 }
 
-angular.module("umbraco").controller("Umbraco.Cloud.PublicAccessController", CloudSecretsController);
+angular.module("umbraco").controller("Umbraco.Cloud.PublicAccessController", CloudPublicAccessController);
