@@ -7,6 +7,10 @@ function CloudSecretsController($q, $http, umbRequestHelper, localizationService
     vm.pageTitle = 'Cloud Public Access';
     vm.data = {};
     function init() {
+        localizationService.localize("treeHeaders_cloudpublicaccess").then(function (value) {
+            vm.pageTitle = value;
+            $scope.$emit("$changeTitle", value);
+        });
         
         umbRequestHelper.resourcePromise(
             $http.get(baseApiUrl + "GetSettings")
