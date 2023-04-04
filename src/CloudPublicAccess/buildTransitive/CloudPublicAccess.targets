@@ -1,0 +1,21 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <CloudPublicAccessContentFilesPath>$(MSBuildThisFileDirectory)..\App_Plugins\CloudPublicAccess\**\*.*</CloudPublicAccessContentFilesPath>
+  </PropertyGroup>
+
+  <Target Name="CopyCloudPublicAccessAssets" BeforeTargets="Build">
+    <ItemGroup>
+      <CloudPublicAccessContentFiles Include="$(CloudPublicAccessContentFilesPath)" />
+    </ItemGroup>
+    <Message Text="Copying CloudPublicAccess files: $(CloudPublicAccessContentFilesPath) - #@(CloudPublicAccessContentFiles->Count()) files" Importance="high" />
+    <Copy SourceFiles="@(CloudPublicAccessContentFiles)" DestinationFiles="@(CloudPublicAccessContentFiles->'$(MSBuildProjectDirectory)\App_Plugins\CloudPublicAccess\%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+  </Target>
+
+  <Target Name="ClearCloudPublicAccessAssets" BeforeTargets="Clean">
+    <ItemGroup>
+      <CloudPublicAccessDir Include="$(MSBuildProjectDirectory)\App_Plugins\CloudPublicAccess\" />
+    </ItemGroup>
+    <Message Text="Clear old CloudPublicAccess data" Importance="high" />
+    <RemoveDir Directories="@(CloudPublicAccessDir)" />
+  </Target>
+</Project>

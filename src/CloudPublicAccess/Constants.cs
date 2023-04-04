@@ -1,4 +1,4 @@
-namespace BackofficePlay.Code;
+namespace CloudPublicAccess;
 
 public static class Constants
 {

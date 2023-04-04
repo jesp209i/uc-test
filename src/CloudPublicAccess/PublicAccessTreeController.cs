@@ -7,7 +7,7 @@ using Umbraco.Cms.Core.Trees;
 using Umbraco.Cms.Web.BackOffice.Trees;
 using Umbraco.Cms.Web.Common.Attributes;
 
-namespace BackofficePlay.Code;
+namespace CloudPublicAccess;
 [Tree(Constants.Sections.Settings, Constants.Trees.CloudPublicAccess, TreeTitle = "Cloud Public Access", TreeGroup = "cloudPublicAccess", SortOrder = 99)]
 [PluginController("PublicAccess")]
 public class PublicAccessTreeController : TreeController

@@ -1,9 +1,10 @@
+using System;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Umbraco.Cms.Core.Configuration.Models;
 using Umbraco.Cms.Web.BackOffice.Controllers;
 
-namespace BackofficePlay.Code.Controllers;
+namespace CloudPublicAccess.Controllers;
 
 public class CloudPublicAccessController : UmbracoAuthorizedJsonController
 {

@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BackofficePlay.Code\BackofficePlay.Code.csproj" />
+    <ProjectReference Include="..\CloudPublicAccess\CloudPublicAccess.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

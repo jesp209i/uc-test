@@ -1,0 +1,8 @@
+﻿{
+    "name": "CloudPublicAccess",
+    "version": "0.0.1",
+    "allowPackageTelemetry": true,
+    "javascript": [
+        "~/App_Plugins/CloudPublicAccess/backoffice/cloudPublicAccess/overview.controller.js"
+    ]
+}
