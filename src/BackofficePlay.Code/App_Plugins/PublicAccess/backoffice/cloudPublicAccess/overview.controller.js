@@ -1,11 +1,24 @@
 // Umbraco.Cloud.PublicAcccessController
-function CloudSecretsController($http, umbRequestHelper) {
+function CloudSecretsController($q, $http, umbRequestHelper, localizationService) {
     let vm = this;
     
     let baseApiUrl = "backoffice/UmbracoCloudSecrets/CloudSecrets/";
     
-    vm.page.name = "Hello hest";
+    vm.page = {};
     function init() {
+        vm.loading = true;
+        
+        var promises = [];
+
+        promises.push(localizationService.localize("treeHeaders_cloudPublicAccessGroup").then(function (value) {
+            vm.page.name = value;
+            $scope.$emit("$changeTitle", value);
+        }));
+        
+        $q.all(promises).then(function(){
+           vm.loading = false; 
+        });
+        
         umbRequestHelper.resourcePromise(
             $http.get(baseApiUrl + "SecretKeys")
         ).then(function (data) {
