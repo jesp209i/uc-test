@@ -3,4 +3,7 @@
     <area alias="treeHeaders">
         <key alias="cloudPublicAccess">Cloud Public Access</key>
     </area>
+    <area alias="cloudPublicAccessArea">
+        <key alias="header">Cloud Public Access</key>
+    </area>
 </language>
