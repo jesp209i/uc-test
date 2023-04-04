@@ -5,7 +5,7 @@ using Umbraco.Cms.Web.BackOffice.Controllers;
 
 namespace BackofficePlay.Code.Controllers;
 
-public class CloudPublicAccessController : UmbracoAuthorizedApiController
+public class CloudPublicAccessController : UmbracoAuthorizedJsonController
 {
     private readonly BasicAuthSettings _basicAuthSettings;
 
@@ -15,7 +15,7 @@ public class CloudPublicAccessController : UmbracoAuthorizedApiController
     }
 
     [HttpGet]
-    public CloudPublicAccessSettings Get()
+    public CloudPublicAccessSettings GetSettings()
     {
         return CreateResponse(_basicAuthSettings);
     }

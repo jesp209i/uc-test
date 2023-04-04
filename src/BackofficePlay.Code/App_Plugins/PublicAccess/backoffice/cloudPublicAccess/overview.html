@@ -1,6 +1,6 @@
 <div class="clearfix" ng-controller="Umbraco.Cloud.PublicAccessController">
     <umb-editor-view footer="false">
-        <umb-editor-header name="vm.page.name"
+        <umb-editor-header name="vm.pageTitle"
                            name-locked="true"
                            hide-icon="true"
                            hide-description="true"
@@ -8,7 +8,7 @@
             
         </umb-editor-header>
         <umb-editor-container>
-            
+            <pre>{{vm.data}}</pre>
         </umb-editor-container>
     </umb-editor-view>
 </div>
