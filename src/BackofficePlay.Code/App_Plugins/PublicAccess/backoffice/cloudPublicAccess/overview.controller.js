@@ -1,4 +1,4 @@
-function CloudPublicAccessController($q, $http, umbRequestHelper, localizationService) {    
+function CloudPublicAccessController($q, $http, umbRequestHelper, localizationService, $scope) {    
     vm = this;
     let baseApiUrl = "backoffice/api/CloudPublicAccess/";
     vm.loading = true;
@@ -7,7 +7,7 @@ function CloudPublicAccessController($q, $http, umbRequestHelper, localizationSe
     function init() {
         localizationService.localize("treeHeaders_cloudPublicAccess").then(function (value) {
             vm.pageTitle = value;
-            vm.$emit("$changeTitle", value);
+            $scope.$emit("$changeTitle", value);
         });
         
         umbRequestHelper.resourcePromise(
