@@ -34,9 +34,9 @@ public class CloudPublicAccessController : UmbracoAuthorizedJsonController
 
 public class CloudPublicAccessSettings
 {
-    public bool Enabled { get; init; } 
+    public bool Enabled { get; init; }
 
-    public string[] AllowedIPs { get; init; }
+    public string[] AllowedIPs { get; init; } = Array.Empty<string>();
 
     public bool RedirectToLoginPage { get; init; }
 }
