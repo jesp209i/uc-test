@@ -7,7 +7,7 @@ function CloudPublicAccessController($q, $http, umbRequestHelper, localizationSe
     function init() {
         localizationService.localize("treeHeaders_cloudPublicAccess").then(function (value) {
             vm.pageTitle = value;
-            $scope.$emit("$changeTitle", value);
+            vm.$emit("$changeTitle", value);
         });
         
         umbRequestHelper.resourcePromise(
