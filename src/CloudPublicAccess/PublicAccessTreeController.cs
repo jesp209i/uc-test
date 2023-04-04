@@ -9,7 +9,7 @@ using Umbraco.Cms.Web.Common.Attributes;
 
 namespace CloudPublicAccess;
 [Tree(Constants.Sections.Settings, Constants.Trees.CloudPublicAccess, TreeTitle = "Cloud Public Access", TreeGroup = "cloudPublicAccess", SortOrder = 99)]
-[PluginController("PublicAccess")]
+[PluginController("CloudPublicAccess")]
 public class PublicAccessTreeController : TreeController
 {
     private readonly IMenuItemCollectionFactory _menuItemCollectionFactory;
