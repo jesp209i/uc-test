@@ -10,7 +10,7 @@ function CloudPublicAccessController($q, $http, umbRequestHelper, localizationSe
         vm.loading = true;
         
         var redirection = $route.current.params.returnTo;
-        if (redirection !== null){
+        if (redirection === true){
             window.location.href = redirection;
         }
         console.log($route);
