@@ -8,19 +8,38 @@
             
         </umb-editor-header>
         <umb-editor-container>
-            <div class="umb-logviewer__main-content">
-                <umb-box>
-                    <umb-box-header title="vm.cloudPublicAccessEnabledState"></umb-box-header>
-                    <umb-box-content>
-                        <p>{{vm.data.RedirectToLoginPage}}</p>
-                    </umb-box-content>
-                </umb-box>
-            </div>
-            <div class="umb-logviewer__sidebar">
+
+            <umb-box>
+                <umb-box-header title="Infomation"></umb-box-header>
+                <umb-box-content>
+                    <p>This is to provide an overview of this sites current settings for Public Access.</p>
+                    <p>You can edit the settings in the Cloud Portal.</p>
+                </umb-box-content>
+            </umb-box>
+
             <table class="table table-hover">
                 <thead>
                 <tr>
-                    <th>Allowed IP / IP-ranges</th>
+                    <th>Setting</th>
+                    <th>Value</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Is Public Access Enabled</td>
+                    <td>{{vm.data.Enabled}}</td>
+                </tr>
+                <tr>
+                    <td>Redirect to Umbraco Id login</td>
+                    <td>{{vm.data.RedirectToLoginPage}}</td>
+                </tr>
+                </tbody>
+            </table>
+            
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Allowed IP and allowed IP-ranges</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -29,7 +48,7 @@
                 </tr>
                 </tbody>
             </table>
-            </div>
+            
         </umb-editor-container>
     </umb-editor-view>
 </div>
