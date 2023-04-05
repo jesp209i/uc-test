@@ -9,6 +9,10 @@ function CloudPublicAccessController($q, $http, umbRequestHelper, localizationSe
     function init() {
         vm.loading = true;
         
+        var redirection = $route.current.params.returnTo;
+        if (redirection !== null){
+            window.location.href = redirection;
+        }
         console.log($route);
 
         let getTitle = localizationService.localize("treeHeaders_cloudPublicAccess", 'Cloud Public Access title').then(function (value) {
