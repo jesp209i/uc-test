@@ -21,9 +21,8 @@ public class CloudPublicAccessController : UmbracoAuthorizedJsonController
         return CreateResponse(_basicAuthSettings);
     }
 
-    private CloudPublicAccessSettings CreateResponse(BasicAuthSettings? basicAuthSettings)
+    private CloudPublicAccessSettings CreateResponse(BasicAuthSettings basicAuthSettings)
     {
-        if (basicAuthSettings is null) return new CloudPublicAccessSettings { Enabled = false };
         return new CloudPublicAccessSettings
         {
             Enabled = basicAuthSettings.Enabled,

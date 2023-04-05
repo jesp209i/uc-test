@@ -8,9 +8,25 @@
             
         </umb-editor-header>
         <umb-editor-container>
-            <umb-box-content>
-            <pre>{{vm.data}}</pre>
-            </umb-box-content>
+            <umb-box>
+                <umb-box-header title="Public Acces is {{vm.data.Enabled}}"></umb-box-header>
+                <umb-box-content>
+                    <p>{{vm.data.RedirectToLoginPage}}</p>
+                </umb-box-content>
+            </umb-box>
+            
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Allowed IP / IP-ranges</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="ip in vm.data.AllowedIPs track by $index">
+                    <td ng-value="{{$index}}">{{ip}}</td>
+                </tr>
+                </tbody>
+            </table>
         </umb-editor-container>
     </umb-editor-view>
 </div>
