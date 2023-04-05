@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <language>
     <area alias="treeHeaders">
-        <key alias="cloudPublicAccess">Cloud Public Access</key>
+        <key alias="cloudPublicAccess">Public Access</key>
     </area>
     <area alias="sections">
         <key alias="umbracoCloud">Umbraco Cloud</key>

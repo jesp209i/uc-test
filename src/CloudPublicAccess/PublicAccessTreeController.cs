@@ -47,7 +47,7 @@ public class PublicAccessTreeController : TreeController
         if (root is not null)
         {
             // This will load in a custom UI instead of the dashboard for the root node
-            root.RoutePath = $"{Constants.Sections.Settings}/{Constants.Trees.CloudPublicAccess}/overview";
+            root.RoutePath = $"{Constants.Sections.CloudSection}/{Constants.Trees.CloudPublicAccess}/overview";
             root.Icon = "icon-unlocked";
             root.HasChildren = false;
             root.MenuUrl = null;
