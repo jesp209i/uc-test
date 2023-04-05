@@ -8,13 +8,15 @@
             
         </umb-editor-header>
         <umb-editor-container>
-            <umb-box>
-                <umb-box-header title="Public Access is {{vm.data.Enabled}}"></umb-box-header>
-                <umb-box-content>
-                    <p>{{vm.data.RedirectToLoginPage}}</p>
-                </umb-box-content>
-            </umb-box>
-            
+            <div class="umb-logviewer__main-content">
+                <umb-box>
+                    <umb-box-header title="vm.cloudPublicAccessEnabledState"></umb-box-header>
+                    <umb-box-content>
+                        <p>{{vm.data.RedirectToLoginPage}}</p>
+                    </umb-box-content>
+                </umb-box>
+            </div>
+            <div class="umb-logviewer__sidebar">
             <table class="table table-hover">
                 <thead>
                 <tr>
@@ -27,6 +29,7 @@
                 </tr>
                 </tbody>
             </table>
+            </div>
         </umb-editor-container>
     </umb-editor-view>
 </div>

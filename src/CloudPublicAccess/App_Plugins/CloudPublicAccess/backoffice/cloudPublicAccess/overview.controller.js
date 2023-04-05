@@ -6,6 +6,7 @@ function CloudPublicAccessController($q, $http, umbRequestHelper, localizationSe
     const baseApiUrl = "backoffice/api/CloudPublicAccess/";
     vm.pageTitle = '';
     vm.data = {};
+    vm.cloudPublicAccessEnabledState = cloudPublicAccessEnabledState;
     function init() {
         vm.loading = true;
 
@@ -29,6 +30,11 @@ function CloudPublicAccessController($q, $http, umbRequestHelper, localizationSe
     }
 
     init();
+    
+    function cloudPublicAccessEnabledState () {
+        var enabled = vm.data.Enabled ? 'enabled' : 'disabled';
+        return `Public Access is ${enabled}`;
+    }
 }
 
 angular.module("umbraco").controller("Umbraco.Cloud.PublicAccessController", CloudPublicAccessController);
