@@ -3,9 +3,8 @@
         <umb-editor-header name="vm.pageTitle"
                            name-locked="true"
                            hide-icon="true"
-                           hide-description="false"
-                           hide-alias="true"
-                           description="Shows an overview of the setting for Public Access for this site">
+                           hide-description="true"
+                           hide-alias="true">
             
         </umb-editor-header>
         <umb-editor-container>
@@ -13,38 +12,45 @@
             <umb-box>
                 <umb-box-header title="Infomation"></umb-box-header>
                 <umb-box-content>
-                    <p>You can edit the settings in the <a href="https://s1.umbraco.io/" target="_blank">Cloud Portal.</a></p>
+                    <p>Shows an overview of the setting for Public Access for this site</p>
                 </umb-box-content>
-            </umb-box>
+            
 
             <table class="table table-hover">
                 <thead>
                 <tr>
-                    <th>Setting</th>
-                    <th>Value</th>
+                    <th style="width:50%;">Setting</th>
+                    <th style="width:50%;">Value</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
-                    <td>Is Public Access Enabled</td>
-                    <td>{{vm.data.Enabled}}</td>
+                    <td>Is Public Access Feature Enabled</td>
+                    <td>{{vm.data.Enabled ? 'Yes' : 'No'}}</td>
                 </tr>
                 <tr>
                     <td>Redirect to Umbraco Id login</td>
-                    <td>{{vm.data.RedirectToLoginPage}}</td>
+                    <td>{{vm.data.RedirectToLoginPage ? 'Yes' : 'No'}}</td>
                 </tr>
                 </tbody>
             </table>
+                <umb-box-content>
+                    <p>You can edit the settings in the <a href="https://s1.umbraco.io/" target="_blank">Cloud Portal.</a></p>
+                </umb-box-content>
+            </umb-box>
             
             <table class="table table-hover">
                 <thead>
                 <tr>
-                    <th>Allowed IP and allowed IP-ranges</th>
+                    <th>Allowed IPs and ranges</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr ng-repeat="ip in vm.data.AllowedIPs track by $index">
                     <td ng-value="{{$index}}">{{ip}}</td>
+                </tr>
+                <tr ng-if="vm.data.AllowedIPs.length === 0 || vm.data.AllowedIPs === undefined">
+                    <td style="color: #CCC;">None registered</td>
                 </tr>
                 </tbody>
             </table>

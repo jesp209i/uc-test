@@ -1,5 +1,4 @@
 using CloudPublicAccess.Section;
-using Microsoft.Extensions.DependencyInjection;
 using Umbraco.Cms.Core.DependencyInjection;
 using Umbraco.Cms.Core.Sections;
 
@@ -9,6 +8,7 @@ public static class ServiceCollectionExtensions
 {
     public static IUmbracoBuilder AddUmbracoCloudSection(this IUmbracoBuilder self)
     {
+        self.ManifestFilters().Append<CloudPackageManifestFilter>();
         self.Sections().InsertAfter<TranslationSection, UmbracoCloudSection>();
         return self;
     }
