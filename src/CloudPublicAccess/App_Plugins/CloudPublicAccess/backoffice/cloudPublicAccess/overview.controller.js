@@ -6,6 +6,8 @@ function CloudPublicAccessController($q, $http, umbRequestHelper, localizationSe
     const baseApiUrl = "backoffice/api/CloudPublicAccess/";
     vm.pageTitle = '';
     vm.data = {};
+    vm.cloudButton = cloudButton;
+        
     function init() {
         vm.loading = true;
         
@@ -34,6 +36,11 @@ function CloudPublicAccessController($q, $http, umbRequestHelper, localizationSe
     }
 
     init();
+    
+    function cloudButton(){
+        var cloudPortal = "https://s1.umbraco.io";
+        window.open(cloudPortal, '_blank').focus();
+    }
 }
 
 angular.module("umbraco").controller("Umbraco.Cloud.PublicAccessController", CloudPublicAccessController);
