@@ -7,7 +7,7 @@
                            hide-alias="true">
             
         </umb-editor-header>
-        <umb-editor-container>
+        <umb-editor-container ng-if="!vm.isRedirecting">
 
             <umb-box>
                 <umb-box-header title="Infomation"></umb-box-header>
@@ -62,6 +62,18 @@
                 </tr>
                 </tbody>
             </table>
+            
+        </umb-editor-container>
+
+        <umb-editor-container ng-if="vm.isRedirecting">
+            <umb-box>
+                <umb-box-header title="Redirecting"></umb-box-header>
+                <umb-box-content>
+                    <umb-load-indicator>
+                    </umb-load-indicator>
+                    <p>Just a second. We are sending you to {{vm.redirectingTo}}</p>
+                </umb-box-content>
+            </umb-box>
             
         </umb-editor-container>
     </umb-editor-view>

@@ -6,15 +6,18 @@ function CloudPublicAccessController($q, $http, umbRequestHelper, localizationSe
     const baseApiUrl = "backoffice/api/CloudPublicAccess/";
     vm.pageTitle = '';
     vm.data = {};
+    vm.isRedirecting = false;
+    
     vm.cloudButton = cloudButton;
         
     function init() {
         vm.loading = true;
         
         var redirection = $route.current.params.returnTo;
-        console.log(redirection);
         
         if (redirection !== undefined){
+            vm.isRedirecting = true;
+            vm.redirectingTo = redirection;
             window.location.href = redirection;
         }
 

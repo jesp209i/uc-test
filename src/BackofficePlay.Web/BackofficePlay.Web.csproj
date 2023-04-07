@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Umbraco.Cloud.Cms.PublicAccess" Version="11.0.0" />
+    <!--<PackageReference Include="Umbraco.Cloud.Cms.PublicAccess" Version="11.0.0" />-->
     <PackageReference Include="Umbraco.Cloud.Identity.Cms" Version="11.0.37" />
     <PackageReference Include="Umbraco.Cloud.StorageProviders.AzureBlob" Version="11.0.0" />
     <PackageReference Include="Umbraco.Cms" Version="11.2.2" />
@@ -24,6 +24,17 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CloudPublicAccess\CloudPublicAccess.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Umbraco.Cloud.Cms.PublicAccess">
+      <HintPath>./Umbraco.Cloud.Cms.PublicAccess.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Umbraco.Cloud.Cms.PublicAccess.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <PropertyGroup>
