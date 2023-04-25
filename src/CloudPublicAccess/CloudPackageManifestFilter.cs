@@ -11,7 +11,7 @@ public class CloudPackageManifestFilter : IManifestFilter
     {
         manifests.Add(new PackageManifest
         {
-            PackageName = "CloudPublicAccess",
+            PackageName = "UmbracoCloud",
             Version = "0.0.1",
             AllowPackageTelemetry = true,
             Scripts = new []

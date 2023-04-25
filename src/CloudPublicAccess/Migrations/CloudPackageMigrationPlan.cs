@@ -8,7 +8,9 @@ public class CloudPackageMigrationPlan : MigrationPlan
     {
         DefinePlan();
     }
-    
+
+    public override string InitialState { get; } = "";
+
     private void DefinePlan()
     {
         MigrationPlan plan = From(InitialState);
