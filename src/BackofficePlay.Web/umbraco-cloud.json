@@ -6,6 +6,12 @@
       "Id": "61a2f82c-a37d-4d3d-8ec2-1044b7211663",
       "Workspaces": [
         {
+          "Id": "9d920eaa-6ffd-480a-952a-30a1c8597ae3",
+          "Name": "Development",
+          "Type": "development",
+          "Url": "https://dev-setup-backoffice-stuff.euwest01.rainbowsrock.net"
+        },
+        {
           "Id": "e1219993-a8d6-4803-bc86-681f0996a3b2",
           "Name": "Live",
           "Type": "live",
