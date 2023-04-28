@@ -6,4 +6,7 @@
     <area alias="sections">
         <key alias="umbracoCloud">Umbraco Cloud</key>
     </area>
+    <area alias="visuallyHiddenTexts">
+        <key alias="openCloudPortal">Open Cloud Portal</key>
+    </area>
 </language>
