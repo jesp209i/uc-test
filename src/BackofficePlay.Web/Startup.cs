@@ -1,3 +1,4 @@
+using CloudPublicAccess.Extensions;
 
 namespace UmbracoProject
 {
@@ -34,6 +35,7 @@ namespace UmbracoProject
                 .AddBackOffice()
                 .AddWebsite()
                 .AddComposers()
+                .AddUmbracoCloudSection()
                 .Build();
         }
 

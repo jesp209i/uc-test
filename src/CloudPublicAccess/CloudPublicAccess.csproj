@@ -19,4 +19,8 @@
     <Content Include="App_Plugins\CloudPublicAccess\**" ExcludeFromSingleFile="true" CopyToPublishDirectory="Always" CopyToOutputDirectory="Always" />
     <None Include="buildTransitive\**" Pack="true" PackagePath="buildTransitive" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="App_Plugins\CloudPublicAccess\backoffice\cloudPublicAccess\overlays" />
+  </ItemGroup>
 </Project>
