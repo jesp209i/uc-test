@@ -16,7 +16,8 @@ public class CloudPackageManifestFilter : IManifestFilter
             AllowPackageTelemetry = true,
             Scripts = new []
             {
-                "/App_Plugins/CloudPublicAccess/backoffice/cloudPublicAccess/overview.controller.js"
+                "/App_Plugins/CloudPublicAccess/backoffice/cloudPublicAccess/overview.controller.js",
+                "/App_Plugins/CloudPublicAccess/umbracoCloud.controller.js"
             }
         });
     }
