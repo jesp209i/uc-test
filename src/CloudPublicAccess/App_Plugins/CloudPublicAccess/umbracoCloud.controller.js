@@ -1,7 +1,7 @@
 (function (){
     'use strict';
     
-    function loader(eventsService, $compile, $rootScope, $location, umbRequestHelper){
+    function loader(eventsService, $compile, $rootScope, $location, $http, umbRequestHelper){
         eventsService.on('app.ready', function (){
             umbRequestHelper.resourcePromise(
                 $http.get(baseApiUrl + "backoffice/api/UmbracoCloud/GetCloudEnvironmentSettings")
