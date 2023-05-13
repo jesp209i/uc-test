@@ -1,4 +1,5 @@
 using CloudPublicAccess.Section;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Umbraco.Cms.Core.DependencyInjection;
 using Umbraco.Cms.Core.Sections;
@@ -21,8 +22,17 @@ public static class ServiceCollectionExtensions
 
     public static IUmbracoBuilder AddCloudSettings(this IUmbracoBuilder self)
     {
-        var projectAlias = self.Config["Umbraco:Cloud:Deploy:Project:Alias"];
-        var projectIdentity = self.Config["Umbraco:Cloud:Identity:Tenant"];
+        var configuration = new ConfigurationBuilder()
+            .SetBasePath(self.BuilderHostingEnvironment!.ApplicationPhysicalPath)
+            .AddJsonFile("umbraco-cloud.json", optional: true, reloadOnChange: true)
+            .AddEnvironmentVariables("Umbraco:Cloud:")
+            .AddEnvironmentVariables("Umbraco__Cloud__")
+            .Build();
+
+        var projectAlias = configuration["Deploy:Project:Alias"];
+            
+        var projectIdentity = configuration["Identity:Tenant"];
+        
         var environmentName = self.Config["Umbraco:Cloud:Deploy:EnvironmentName"];
 
         var settings = new UmbracoCloudHelperSettings(projectAlias, projectIdentity, environmentName);

@@ -1,39 +1,56 @@
 using CloudPublicAccess.Extensions;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using StackExchange.Profiling.Internal;
 using Umbraco.Cms.Web.BackOffice.Controllers;
+using Umbraco.Extensions;
 
 namespace CloudPublicAccess.Controllers;
 
 public class UmbracoCloudController : UmbracoAuthorizedJsonController
 {
     private readonly UmbracoCloudHelperSettings _umbracoCloudHelperSettings;
+    private readonly IConfiguration _config;
 
-    public UmbracoCloudController(UmbracoCloudHelperSettings umbracoCloudHelperSettings)
+    public UmbracoCloudController(UmbracoCloudHelperSettings umbracoCloudHelperSettings, IConfiguration config)
     {
         _umbracoCloudHelperSettings = umbracoCloudHelperSettings;
+        _config = config;
     }
     
     [HttpGet]
     public CloudPortalProjectLinkResponse GetCloudEnvironmentSettings()
     {
         var resolvedPortal = ResolvePortalUrl(_umbracoCloudHelperSettings.IdentityTenant, _umbracoCloudHelperSettings.ProjectAlias);
-        
-        return new CloudPortalProjectLinkResponse{ ProjectPortalLink = resolvedPortal, EnvironmentName = _umbracoCloudHelperSettings.EnvironmentName};
+        var environmentName = ResolveEnvironmentName();
+        return new CloudPortalProjectLinkResponse{ ProjectPortalLink = resolvedPortal, EnvironmentName = environmentName};
     }
 
-    private string? ResolvePortalUrl(string? identityTenant, string? projectAlias)
+    private string ResolvePortalUrl(string? identityTenant, string? projectAlias)
     {
-        if (!identityTenant.HasValue() || !projectAlias.HasValue())
-            return null;
-
-        if (identityTenant.Contains("umbracoiddev"))
+        var baseUrl = "https://s1.umbraco.io";
+        
+        if (identityTenant.HasValue() && identityTenant.Contains("umbracoiddev"))
         {
-            return $"https://dev-cloud.umbraco.io/project/{projectAlias}";
+            baseUrl = "https://dev-cloud.umbraco.com";
+        }
+
+        if (projectAlias.HasValue())
+        {
+            return $"{baseUrl}/project/{projectAlias}";
         }
         
-        return $"https://cloud.umbraco.io/project/{projectAlias}";
+        return $"{baseUrl}/projects";
+    }
+
+    private string ResolveEnvironmentName()
+    {
+        var environmentName = "local";
         
+        if (_umbracoCloudHelperSettings.EnvironmentName.HasValue())
+            environmentName = _umbracoCloudHelperSettings.EnvironmentName!;
+
+        return environmentName;
     }
 }
 
