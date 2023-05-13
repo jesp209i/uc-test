@@ -4,7 +4,7 @@
     function loader(eventsService, $compile, $rootScope, $location, $http, umbRequestHelper){
         eventsService.on('app.ready', function (){
             umbRequestHelper.resourcePromise(
-                $http.get(baseApiUrl + "backoffice/api/UmbracoCloud/GetCloudEnvironmentSettings")
+                $http.get("backoffice/api/UmbracoCloud/GetCloudEnvironmentSettings")
             ).then(function (data) {
                 console.log(data);
                 insertCloudLink(data.EnvironmentName, data.ProjectPortalLink);
