@@ -35,7 +35,6 @@ namespace UmbracoProject
                 .AddBackOffice()
                 .AddWebsite()
                 .AddComposers()
-                .AddUmbracoCloudSection()
                 .Build();
         }
 

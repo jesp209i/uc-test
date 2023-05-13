@@ -1,12 +1,18 @@
 (function (){
     'use strict';
     
-    function loader(eventsService, $compile, $rootScope, $location){
+    function loader(eventsService, $compile, $rootScope, $location, umbRequestHelper){
         eventsService.on('app.ready', function (){
-            insertCloudLink();
+            umbRequestHelper.resourcePromise(
+                $http.get(baseApiUrl + "backoffice/api/UmbracoCloud/GetCloudEnvironmentSettings")
+            ).then(function (data) {
+                console.log(data);
+                insertCloudLink(data.EnvironmentName, data.ProjectPortalLink);
+            });
+            
         });
         
-        function insertCloudLink(){
+        function insertCloudLink(environmentName, projectPortalLink){
             var headerActions = angular.element(document).find('.umb-app-header__actions');
             console.log($location);
             
@@ -31,7 +37,7 @@
                 spanSrOnly.append(localize, "...");
                 
                 let cloudButton = document.createElement('button');
-                cloudButton.addEventListener("click", goToCloudPortal)
+                cloudButton.addEventListener("click", goToCloudPortal(projectPortalLink))
                 cloudButton.title = "Cloud Portal";
                 cloudButton.type = "button";
                 cloudButton.className = "umb-app-header__button btn-reset";
@@ -47,7 +53,7 @@
                 listItemEnvironmentName.className = 'umb-app-header__action';
                 listItemEnvironmentName.style.fontWeight = "900";
                 listItemEnvironmentName.style.color = "#CCC";
-                listItemEnvironmentName.innerText = getEnvironment();
+                listItemEnvironmentName.innerText = environmentName;
 
                 
                 headerActions[0].prepend(listItem);
@@ -56,22 +62,10 @@
             }
         }
         
-        function goToCloudPortal() {
-            const cloudPortal = "https://s1.umbraco.io";
-            window.open(cloudPortal, '_blank').focus();
+        function goToCloudPortal(projectPortalLink) {
+            window.open(projectPortalLink, '_blank').focus();
         }
-
-        function getEnvironment(){
-            const absUrl = $location.absUrl();
-            if (absUrl.includes("://localhost:"))
-                return "local";
-            if (absUrl.includes("://dev-"))
-                return "development";
-            if (absUrl.includes("://stage-"))
-                return "staging";
-
-            return "live";
-        }
+        
     }
     
     angular.module('umbraco').run(loader);

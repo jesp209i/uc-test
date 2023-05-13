@@ -8,7 +8,9 @@ public class CloudPackageMigrationPlan : MigrationPlan
     {
         DefinePlan();
     }
-    
+
+    private new const string InitialState = "";
+
     private void DefinePlan()
     {
         MigrationPlan plan = From(InitialState);
