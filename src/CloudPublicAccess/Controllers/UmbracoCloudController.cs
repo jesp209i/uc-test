@@ -10,47 +10,16 @@ namespace CloudPublicAccess.Controllers;
 public class UmbracoCloudController : UmbracoAuthorizedJsonController
 {
     private readonly UmbracoCloudHelperSettings _umbracoCloudHelperSettings;
-    private readonly IConfiguration _config;
 
-    public UmbracoCloudController(UmbracoCloudHelperSettings umbracoCloudHelperSettings, IConfiguration config)
+    public UmbracoCloudController(UmbracoCloudHelperSettings umbracoCloudHelperSettings)
     {
         _umbracoCloudHelperSettings = umbracoCloudHelperSettings;
-        _config = config;
     }
     
     [HttpGet]
     public CloudPortalProjectLinkResponse GetCloudEnvironmentSettings()
     {
-        var resolvedPortal = ResolvePortalUrl(_umbracoCloudHelperSettings.IdentityTenant, _umbracoCloudHelperSettings.ProjectAlias);
-        var environmentName = ResolveEnvironmentName();
-        return new CloudPortalProjectLinkResponse{ ProjectPortalLink = resolvedPortal, EnvironmentName = environmentName};
-    }
-
-    private string ResolvePortalUrl(string? identityTenant, string? projectAlias)
-    {
-        var baseUrl = "https://s1.umbraco.io";
-        
-        if (identityTenant.HasValue() && identityTenant.Contains("umbracoiddev"))
-        {
-            baseUrl = "https://dev-cloud.umbraco.com";
-        }
-
-        if (projectAlias.HasValue())
-        {
-            return $"{baseUrl}/project/{projectAlias}";
-        }
-        
-        return $"{baseUrl}/projects";
-    }
-
-    private string ResolveEnvironmentName()
-    {
-        var environmentName = "local";
-        
-        if (_umbracoCloudHelperSettings.EnvironmentName.HasValue())
-            environmentName = _umbracoCloudHelperSettings.EnvironmentName!;
-
-        return environmentName;
+        return new CloudPortalProjectLinkResponse{ ProjectPortalLink = _umbracoCloudHelperSettings.PortalUrl, EnvironmentName = _umbracoCloudHelperSettings.EnvironmentName };
     }
 }
 

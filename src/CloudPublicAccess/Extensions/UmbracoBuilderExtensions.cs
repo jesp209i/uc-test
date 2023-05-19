@@ -1,4 +1,5 @@
 using CloudPublicAccess.Section;
+using CloudPublicAccess.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Umbraco.Cms.Core.DependencyInjection;
@@ -16,7 +17,11 @@ public static class ServiceCollectionExtensions
 
     public static IUmbracoBuilder AddCloudManifestFilters(this IUmbracoBuilder self)
     {
-        self.ManifestFilters().Append<CloudPackageManifestFilter>();
+        if (!self.ManifestFilters().Has<CloudPackageManifestFilter>())
+        {
+            self.ManifestFilters().Append<CloudPackageManifestFilter>();
+        }
+            
         return self;
     }
 
@@ -25,17 +30,19 @@ public static class ServiceCollectionExtensions
         var configuration = new ConfigurationBuilder()
             .SetBasePath(self.BuilderHostingEnvironment!.ApplicationPhysicalPath)
             .AddJsonFile("umbraco-cloud.json", optional: true, reloadOnChange: true)
-            .AddEnvironmentVariables("Umbraco:Cloud:")
-            .AddEnvironmentVariables("Umbraco__Cloud__")
             .Build();
 
         var projectAlias = configuration["Deploy:Project:Alias"];
             
         var projectIdentity = configuration["Identity:Tenant"];
         
-        var environmentName = self.Config["Umbraco:Cloud:Deploy:EnvironmentName"];
+        var environmentNameFromConfig = self.Config["Umbraco:Cloud:Deploy:EnvironmentName"];
 
-        var settings = new UmbracoCloudHelperSettings(projectAlias, projectIdentity, environmentName);
+        var environmentName = SettingsHelper.ResolveEnvironmentName(environmentNameFromConfig);
+
+        var portalUrl = SettingsHelper.ResolvePortalUrl(projectIdentity, projectAlias);
+
+        var settings = new UmbracoCloudHelperSettings(portalUrl, environmentName);
 
         self.Services.AddSingleton(settings);
         
@@ -45,13 +52,11 @@ public static class ServiceCollectionExtensions
 
 public class UmbracoCloudHelperSettings
 {
-    public UmbracoCloudHelperSettings(string? projectAlias, string? identityTenant, string? environmentName)
+    public UmbracoCloudHelperSettings(string? portalUrl, string? environmentName)
     {
-        ProjectAlias = projectAlias;
-        IdentityTenant = identityTenant;
+        PortalUrl = portalUrl;
         EnvironmentName = environmentName;
     }
-    public string? ProjectAlias { get; }
-    public string? IdentityTenant { get; }
+    public string? PortalUrl { get; }
     public string? EnvironmentName { get; }
 }

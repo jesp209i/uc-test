@@ -59,14 +59,20 @@
         }
         
         function createEnvironmentNameListItem(environmentName){
+            const listItemProps = {
+              innerText: environmentName,
+              className: 'umb-app-header__action',
+              style: {
+                  fontWeight: "900",
+                  color: "#CCC"
+              },
+              dataset: {
+                  element: "global-environment-name"
+              }
+            };
+            
             let listItemEnvironmentName = document.createElement('li');
-            listItemEnvironmentName.dataset['element'] = "global-environment-name";
-            listItemEnvironmentName.className = 'umb-app-header__action';
-            listItemEnvironmentName.style.fontWeight = "900";
-            listItemEnvironmentName.style.color = "#CCC";
-            if (environmentName === null)
-                environmentName = "local";
-            listItemEnvironmentName.innerText = environmentName;
+            listItemEnvironmentName = { ...listItemEnvironmentName, ...listItemProps}
             
             return listItemEnvironmentName;
         }
