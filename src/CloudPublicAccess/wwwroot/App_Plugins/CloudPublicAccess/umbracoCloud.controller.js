@@ -59,7 +59,7 @@
         }
         
         function createEnvironmentNameListItem(environmentName){
-            const listItemProps = {
+            let listItemProps = {
               innerText: environmentName,
               className: 'umb-app-header__action',
               style: {
