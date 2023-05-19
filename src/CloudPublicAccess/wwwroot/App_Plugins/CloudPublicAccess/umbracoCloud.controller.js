@@ -72,7 +72,9 @@
             };
             
             let listItemEnvironmentName = document.createElement('li');
-            listItemEnvironmentName = { ...listItemEnvironmentName, ...listItemProps}
+            Object.assign(listItemEnvironmentName, listItemProps);
+            
+            console.log(listItemEnvironmentName);
             
             return listItemEnvironmentName;
         }
