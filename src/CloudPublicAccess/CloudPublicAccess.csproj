@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk.Razor">
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <ContentTargetFolders>.</ContentTargetFolders>
@@ -8,15 +8,17 @@
     <Description>...</Description>
     <PackageTags>umbraco plugin package</PackageTags>
     <Nullable>enable</Nullable>
+    <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+    <StaticWebAssetBasePath>/</StaticWebAssetBasePath>
   </PropertyGroup>
 
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+  
   <ItemGroup>
     <PackageReference Include="Umbraco.Cms.Web.Website" Version="11.3.1" />
     <PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="11.3.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Content Include="App_Plugins\CloudPublicAccess\**" ExcludeFromSingleFile="true" CopyToPublishDirectory="Always" CopyToOutputDirectory="Always" />
-    <None Include="buildTransitive\**" Pack="true" PackagePath="buildTransitive" />
-  </ItemGroup>
 </Project>
