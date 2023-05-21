@@ -37,7 +37,5 @@ public class ApplicationStartedHandler : INotificationHandler<UmbracoApplication
 
         Upgrader? upgrader = new(new CloudPackageMigrationPlan(_scopeProvider));
         upgrader.Execute(_migrationPlanExecutor, _scopeProvider, _keyValueService);
-
-        throw new System.NotImplementedException();
     }
 }

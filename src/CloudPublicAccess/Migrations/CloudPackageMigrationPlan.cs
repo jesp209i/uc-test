@@ -16,7 +16,7 @@ public class CloudPackageMigrationPlan : MigrationPlan
     private void DefinePlan()
     {
         using IScope scope = _scopeProvider.CreateScope();
-        From("CloudPublicAccess_Zero")
+        From(string.Empty)
             .To<CloudPublicAccess_Initial>(nameof(CloudPublicAccess_Initial));
     }
 }
