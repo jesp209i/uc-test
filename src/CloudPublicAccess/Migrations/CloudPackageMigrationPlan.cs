@@ -4,18 +4,10 @@ namespace CloudPublicAccess.Migrations;
 
 public class CloudPackageMigrationPlan : MigrationPlan
 {
-    public CloudPackageMigrationPlan() : base(Constants.PackageName)
+    public CloudPackageMigrationPlan() : base("cloud_package")
     {
-        DefinePlan();
-    }
-
-    private new const string InitialState = "";
-
-    private void DefinePlan()
-    {
-        MigrationPlan plan = From(InitialState);
-
-        _ = plan
+        From(string.Empty)
             .To<CloudPublicAccess_Initial>(CloudPublicAccess_Initial.MigrationName);
     }
+
 }
