@@ -75,5 +75,4 @@
     }
     
     angular.module('umbraco').run(loader);
-    
 })();
