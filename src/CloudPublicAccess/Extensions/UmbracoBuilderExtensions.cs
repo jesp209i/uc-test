@@ -1,3 +1,4 @@
+using CloudPublicAccess.Handlers;
 using CloudPublicAccess.Section;
 using CloudPublicAccess.Services;
 using CSharpTest.Net.Collections;
@@ -5,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Umbraco.Cms.Core.DependencyInjection;
+using Umbraco.Cms.Core.Notifications;
 using Umbraco.Cms.Core.Sections;
 using Umbraco.Cms.Web.BackOffice.Authorization;
 
@@ -16,21 +18,11 @@ public static class ServiceCollectionExtensions
     {
         if (!self.Sections().Has<UmbracoCloudSection>())
             self.Sections().InsertAfter<TranslationSection, UmbracoCloudSection>();
-        self.Services.AddAuthorization(o => CreatePolicies(o));
+        
+        self.AddNotificationHandler<UmbracoApplicationStartedNotification, ApplicationStartedHandler>();
         return self;
     }
-
-    private static void CreatePolicies(AuthorizationOptions options,
-        string backofficeAuthenticationScheme = Umbraco.Cms.Core.Constants.Security.BackOfficeAuthenticationType)
-    {
-        options.AddPolicy("CloudSection", policy =>
-        {
-            policy.AuthenticationSchemes.Add(backofficeAuthenticationScheme);
-            policy.Requirements.Add(new TreeRequirement(Constants.Trees.CloudPublicAccess));
-        });
-    }
-
-
+    
     public static IUmbracoBuilder AddCloudManifestFilters(this IUmbracoBuilder self)
     {
         if (!self.ManifestFilters().Has<CloudPackageManifestFilter>())
