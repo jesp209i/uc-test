@@ -12,7 +12,8 @@ public class CloudPackageManifestFilter : IManifestFilter
         manifests.Add(new PackageManifest
         {
             PackageName = "CloudPublicAccess",
-            Version = "0.0.1",
+            Version = typeof(CloudPackageManifestFilter).Assembly
+                .GetName().Version.ToString(3),
             AllowPackageTelemetry = true,
             Scripts = new []
             {
