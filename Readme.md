@@ -121,7 +121,7 @@ base = "src/MyAwesomeProject/MyAwesomeProject.Web"
 csproj = "MyAwesomeProject.Web.csproj"
 ```
 
-Its's a good idea to also update the namespace used in the Program.cs, Startup.cs and _ViewImports.cshtml files, so the naming is consistent throughout your project structure. Once updated you will need to clear out the bin and obj folders locally to avoid build errors. When you are done, commit the changes and push them to Cloud (and that's it).
+Its's a good idea to also update the namespace used in the Program.cs, Startup.cs and _ViewImports.cshtml files, so the naming is consistent throughout your project structure. Once updated you will need to clear out the bin and obj folders locally to avoid build errors. When you are done, commit the changes and push them to Cloud (and that's it). 
 
 ### Build Process on Umbraco Cloud
 When you push your commits to Umbraco Cloud from your local machine, the build process is as follows:
